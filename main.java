@@ -22,11 +22,18 @@ public class main {
         employees.add(manager);
 
         for (Employee employee : employees) {
-            System.out.println("- " + employee.getName() + " (ID: " + employee.hashCode() +
-                    ", Pozycja: " + employee.getPosition() +
-                    ", Data zatrudnienia: " + employee.getHireDate() +
-                    ", Wynagrodzenie " + employee.getSalary() + ")");
-            employee.work();
+            System.out.println("- " + employee.getName() + " posiada kod: " + employee.hashCode());
+        }
+
+        System.out.println();
+
+        Worker worker5 = new Worker("Anna", 2500, 2, "2022-04-15", "Software Developer");
+        for (Employee employee : employees) {
+            if (worker5.equals(employee)) {
+                System.out.println("Pracownik " + worker5.getName() + " jest taki sam jak " + employee.getName());
+            } else {
+                System.out.println("Worker " + worker5.getName() + " nie jest taki sam jak " + employee.getName());
+            }
         }
     }
 }
