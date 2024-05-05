@@ -11,28 +11,42 @@ public class main {
         Worker worker2 = new Worker("Patrycja", 1800, 2, "2021-12-15", "Senior IT Specialist");
         Worker worker3 = new Worker("Kuba", 2200, 3, "2022-02-10", "Project Manager");
         Worker worker4 = new Worker("Filip", 1900, 4, "2022-03-05", "QA Engineer");
+        Worker worker5 = new Worker("Anna", 2500, 5, "2022-04-15", "Software Developer");
 
-        Manager manager = new Manager("Krystian", 3500, 5, "2021-11-20", "Team Leader");
+        Manager manager1 = new Manager("Krystian", 3500, 6, "2021-11-20", "Team Leader");
+        Manager manager2 = new Manager("Monika", 4000, 7, "2021-10-10", "Head of IT");
 
         List<Employee> employees = new ArrayList<>();
         employees.add(worker1);
         employees.add(worker2);
         employees.add(worker3);
         employees.add(worker4);
-        employees.add(manager);
+        employees.add(worker5);
+        employees.add(manager1);
+        employees.add(manager2);
+
+        double totalSalary = 0;
+        double totalManagerSalary = 0;
+        double totalWorkerSalary = 0;
 
         for (Employee employee : employees) {
-            System.out.println("- " + employee.getName() + " posiada kod: " + employee.hashCode());
+            totalSalary += employee.getSalary();
+            if (employee instanceof Manager) {
+                totalManagerSalary += employee.getSalary();
+            } else if (employee instanceof Worker) {
+                totalWorkerSalary += employee.getSalary();
+            }
         }
 
-        System.out.println();
+        System.out.println("Suma wynagrodzen dla wszystkich pracownikow " + totalSalary);
+        System.out.println("Suma wynagrodzen menadzerow " + totalManagerSalary);
+        System.out.println("Suma wynagrodzen pracownikow " + totalWorkerSalary);
 
-        Worker worker5 = new Worker("Anna", 2500, 2, "2022-04-15", "Software Developer");
         for (Employee employee : employees) {
-            if (worker5.equals(employee)) {
-                System.out.println("Pracownik " + worker5.getName() + " jest taki sam jak " + employee.getName());
-            } else {
-                System.out.println("Worker " + worker5.getName() + " nie jest taki sam jak " + employee.getName());
+            for (Employee other : employees) {
+                if (employee.equals(other)) {
+                    System.out.println(employee.getName() + " ma odpowiednik w kolekcji: " + other.getName());
+                }
             }
         }
     }
